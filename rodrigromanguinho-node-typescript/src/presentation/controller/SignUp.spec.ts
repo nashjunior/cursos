@@ -28,4 +28,17 @@ describe(`SignUp controller`, () => {
     const httpResponse: HttpResponse = sut.handle(httpRequest);
     expect(httpResponse.body).toEqual(new MissingParamError(`email`));
   });
+
+  test(`Should return 400 if no password is provided`, () => {
+    const sut = new SignUpController();
+    const httpRequest = {
+      body: {
+        email: `any_email@mail.com`,
+        name: `any_email`,
+        passwordConfirmation: `any_password`,
+      },
+    };
+    const httpResponse: HttpResponse = sut.handle(httpRequest);
+    expect(httpResponse.body).toEqual(new MissingParamError(`password`));
+  });
 });

@@ -6,6 +6,7 @@
   "devDependencies": {
     "@types/jest": "^26.0.14",
     "@types/node": "^14.11.2",
+    "@types/validator": "^13.1.0",
     "@typescript-eslint/eslint-plugin": "^4.3.0",
     "@typescript-eslint/parser": "^4.3.0",
     "eslint": "^7.10.0",
@@ -18,13 +19,16 @@
     "ts-jest": "^26.4.1",
     "typescript": "^4.0.3"
   },
-  "dependencies": {},
+  "dependencies": {
+    "validator": "^13.1.17"
+  },
   "scripts": {
-    "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
+    "test": "jest --passWithNoTests --silent --noStackTrace",
+    "test:inBand": "yarn test -- --runInBand",
     "test:verbose": "yarn test --",
     "test:integration": "yarn test -- --watch -c jest-integration-config.js",
     "test:unit": "yarn test -- --watch -c jest-unit-config.js",
-    "test:ci": "yarn test -- --coverage",
+    "test:ci": "yarn test:inBand -- --coverage",
     "test:related": "yarn test -- --findRelatedTests"
   }
 }

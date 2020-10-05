@@ -3,10 +3,15 @@ import {
   MissingParamError,
   ServerError,
 } from '../errors/index';
-import { EmailValidator, HttpResponse } from '../protocols';
-import SignUpController from './SignUp';
-import { AccountModel } from '../../domain/models/Account';
-import { AddAccount, AddAccountModel } from '../../domain/useCases/AddAccount';
+import { HttpResponse } from '../protocols';
+
+import {
+  AccountModel,
+  AddAccountModel,
+  AddAccount,
+  EmailValidator,
+} from './signUp/SignUpProtocols';
+import SignUpController from './signUp/SignUp';
 
 interface SutTypes {
   sut: SignUpController;

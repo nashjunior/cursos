@@ -3,8 +3,7 @@ import {
   MissingParamError,
   ServerError,
 } from '../errors/index';
-import EmailValidator from '../protocols/EmailValidator';
-import { HttpResponse } from '../protocols/Http';
+import { EmailValidator } from '../protocols/index';
 import SignUpController from './SignUp';
 
 interface SutTypes {

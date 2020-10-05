@@ -1,3 +1,4 @@
+import ServerError from '../errors/ServerError';
 import { HttpResponse } from '../protocols/Http';
 
 const httpResponse = {} as HttpResponse;
@@ -8,4 +9,10 @@ const badRequest = (error: Error): HttpResponse => {
   return httpResponse;
 };
 
-export { badRequest as default };
+const serverError = (): HttpResponse => {
+  httpResponse.statusCode = 500;
+  httpResponse.body = new ServerError();
+  return httpResponse;
+};
+
+export { badRequest, serverError };

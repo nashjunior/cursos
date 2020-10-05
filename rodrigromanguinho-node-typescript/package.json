@@ -20,6 +20,11 @@
   },
   "dependencies": {},
   "scripts": {
-    "test": "jest --watch"
+    "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
+    "test:verbose": "yarn test --",
+    "test:integration": "yarn test -- --watch -c jest-integration-config.js",
+    "test:unit": "yarn test -- --watch -c jest-unit-config.js",
+    "test:ci": "yarn test -- --coverage",
+    "test:related": "yarn test -- --findRelatedTests"
   }
 }

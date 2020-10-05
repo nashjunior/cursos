@@ -244,7 +244,6 @@ describe(`SignUp controller`, () => {
     };
 
     const httpResponse = await sut.handle(httpRequest);
-    console.log(httpResponse);
     expect(httpResponse.statusCode).toBe(200);
 
     expect(httpResponse.body).toEqual({

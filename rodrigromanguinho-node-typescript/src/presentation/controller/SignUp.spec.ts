@@ -68,6 +68,7 @@ describe(`SignUp controller`, () => {
       },
     };
     const httpResponse = sut.handle(httpRequest);
+    expect(httpResponse.statusCode).toBe(400);
     expect(httpResponse.body).toEqual(new MissingParamError(`name`));
   });
 
@@ -81,6 +82,8 @@ describe(`SignUp controller`, () => {
       },
     };
     const httpResponse: HttpResponse = sut.handle(httpRequest);
+    expect(httpResponse.statusCode).toBe(400);
+
     expect(httpResponse.body).toEqual(new MissingParamError(`email`));
   });
 
@@ -94,6 +97,8 @@ describe(`SignUp controller`, () => {
       },
     };
     const httpResponse: HttpResponse = sut.handle(httpRequest);
+    expect(httpResponse.statusCode).toBe(400);
+
     expect(httpResponse.body).toEqual(new MissingParamError(`password`));
   });
 
@@ -107,6 +112,8 @@ describe(`SignUp controller`, () => {
       },
     };
     const httpResponse: HttpResponse = sut.handle(httpRequest);
+    expect(httpResponse.statusCode).toBe(400);
+
     expect(httpResponse.body).toEqual(
       new MissingParamError(`passwordConfirmation`),
     );
@@ -123,6 +130,8 @@ describe(`SignUp controller`, () => {
       },
     };
     const httpResponse: HttpResponse = sut.handle(httpRequest);
+    expect(httpResponse.statusCode).toBe(400);
+
     expect(httpResponse.body).toEqual(
       new InvalidParamError(`passwordConfirmation`),
     );
@@ -141,6 +150,8 @@ describe(`SignUp controller`, () => {
     };
 
     const httpResponse = sut.handle(httpRequest);
+    expect(httpResponse.statusCode).toBe(400);
+
     expect(httpResponse.body).toEqual(new InvalidParamError(`email`));
   });
 
@@ -157,6 +168,7 @@ describe(`SignUp controller`, () => {
     };
 
     sut.handle(httpRequest);
+
     expect(isValidSpy).toHaveBeenCalledWith(`any_email@mail.com`);
   });
 
@@ -175,6 +187,8 @@ describe(`SignUp controller`, () => {
     };
 
     const httpResponse = sut.handle(httpRequest);
+    expect(httpResponse.statusCode).toBe(500);
+
     expect(httpResponse.body).toEqual(new ServerError());
   });
 
@@ -193,6 +207,8 @@ describe(`SignUp controller`, () => {
     };
 
     const httpResponse = sut.handle(httpRequest);
+    expect(httpResponse.statusCode).toBe(500);
+
     expect(httpResponse.body).toEqual(new ServerError());
   });
 
@@ -213,6 +229,28 @@ describe(`SignUp controller`, () => {
       name: `any_email`,
       email: `any_email@mail.com`,
       password: `any_password`,
+    });
+  });
+
+  test(`Should return 200 if valid data is provided`, () => {
+    const { sut } = makeSut();
+    const httpRequest = {
+      body: {
+        email: `valid_email@mail.com`,
+        name: `valid_email`,
+        password: `valid_password`,
+        passwordConfirmation: `valid_password`,
+      },
+    };
+
+    const httpResponse = sut.handle(httpRequest);
+    expect(httpResponse.statusCode).toBe(200);
+
+    expect(httpResponse.body).toEqual({
+      id: `valid_id`,
+      email: `valid.email@email.com`,
+      name: `valid_name`,
+      password: `valid_password`,
     });
   });
 });

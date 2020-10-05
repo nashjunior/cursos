@@ -15,4 +15,10 @@ const serverError = (): HttpResponse => {
   return httpResponse;
 };
 
-export { badRequest, serverError };
+const ok = (data: any): HttpResponse => {
+  httpResponse.statusCode = 200;
+  httpResponse.body = data;
+  return httpResponse;
+};
+
+export { badRequest, serverError, ok };

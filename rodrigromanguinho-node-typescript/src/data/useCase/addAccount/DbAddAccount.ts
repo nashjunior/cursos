@@ -1,4 +1,3 @@
-import { resolve } from 'path';
 import { AccountModel } from '../../../domain/models/Account';
 import {
   AddAccount,

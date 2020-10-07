@@ -16,6 +16,11 @@ const MongoHelper = {
   getCollection(name: string): Collection {
     return this.client.db().collection(name);
   },
+
+  mapper(collection: any): any {
+    const { _id, ...rest } = collection;
+    return { id: _id, ...rest };
+  },
 };
 
 export default MongoHelper;

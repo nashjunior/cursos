@@ -18,7 +18,7 @@ module.exports = {
   // collectCoverage: false,
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
-  collectCoverageFrom: [`<rootDir>/src/**/*.ts`],
+  collectCoverageFrom: [`<rootDir>/src/**/*.ts`, `!<rootDir>/src/main/**`],
 
   // The directory where Jest should output its coverage files
   coverageDirectory: `coverage`,
@@ -91,7 +91,7 @@ module.exports = {
   // notifyMode: "failure-change",
 
   // A preset that is used as a base for Jest's configuration
-  preset: `@shelf/jest-mongodb`,
+  // preset: `@shelf/jest-mongodb`,
 
   // Run tests from one or more projects
   // projects: undefined,

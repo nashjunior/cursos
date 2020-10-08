@@ -3,10 +3,6 @@ import app from '../confg/app';
 import MongoHelper from '../../infrastructure/db/mongodb/helpers/MongoHelper';
 
 describe(`Signup Routes`, () => {
-  beforeAll(async () => {
-    await MongoHelper.connect(``);
-  });
-
   afterAll(async () => {
     await MongoHelper.disconnect();
   });

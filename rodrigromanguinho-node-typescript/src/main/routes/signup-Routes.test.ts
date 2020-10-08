@@ -1,14 +1,19 @@
 import request from 'supertest';
 import app from '../confg/app';
 import MongoHelper from '../../infrastructure/db/mongodb/helpers/MongoHelper';
+import env from '../confg/env';
 
 describe(`Signup Routes`, () => {
+  beforeAll(async () => {
+    await MongoHelper.connect(env.mongoUrl);
+  });
+
   afterAll(async () => {
     await MongoHelper.disconnect();
   });
 
   beforeEach(async () => {
-    const accountCollection = MongoHelper.getCollection(`accounts`);
+    const accountCollection = await MongoHelper.getCollection(`accounts`);
     accountCollection.deleteMany({});
   });
   test(`Should return an account on success`, async () => {

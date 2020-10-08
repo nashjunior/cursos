@@ -1,9 +1,10 @@
+import env from '../../../../main/confg/env';
 import MongoHelper from '../helpers/MongoHelper';
 import AccountMongoRepository from './Account';
 
 describe(`Account Mongo Repository`, () => {
   beforeAll(async () => {
-    await MongoHelper.connect(``);
+    await MongoHelper.connect(env.mongoUrl);
   });
 
   afterAll(async () => {
@@ -11,7 +12,7 @@ describe(`Account Mongo Repository`, () => {
   });
 
   beforeEach(async () => {
-    const accountCollection = MongoHelper.getCollection(`accounts`);
+    const accountCollection = await MongoHelper.getCollection(`accounts`);
     accountCollection.deleteMany({});
   });
 
